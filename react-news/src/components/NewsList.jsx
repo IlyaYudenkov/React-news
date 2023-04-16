@@ -1,13 +1,14 @@
 import React from "react";
 import NewsPost from "./NewsPost";
 
-const NewsList = ({}) => {
-
+const NewsList = ({posts}) => {
+   
  return (
     <div>
         <h1>Новости</h1>
-        <NewsPost/>
-        
+        {posts.map(post => 
+        <NewsPost post = {post}/>
+        )}
     </div>
     
  );
