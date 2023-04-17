@@ -1,4 +1,6 @@
 import React from "react";
+import './NewsPost.css';
+import {Link} from "react-router-dom";
 
 const NewsPost = ({post}) => {
     
@@ -9,7 +11,7 @@ const NewsPost = ({post}) => {
         <div className="news__info">
             <div className="info__date">{post.date}</div>
             <div className="info__button">
-                <a href="">Читать</a>
+                <Link to = {`${post.path}%`}>Читать</Link>
             </div>
         </div>
     </div>
