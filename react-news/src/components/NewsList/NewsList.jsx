@@ -8,7 +8,7 @@ const NewsList = ({posts}) => {
     <div>
         <h1>Новости</h1>
         {posts.map(post => 
-            <NewsPost post = {post}/>
+            <NewsPost post = {post} key = {post.id}/>
         )}
     </div>
     

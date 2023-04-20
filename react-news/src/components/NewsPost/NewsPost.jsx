@@ -11,10 +11,12 @@ const NewsPost = ({post}) => {
         <div className="news__info">
             <div className="info__date">{post.date}</div>
             <div className="info__button">
-                <Link to = {`${post.path}%`}>Читать</Link>
+                <Link to = {`${post.path}`}>Читать</Link>
             </div>
         </div>
+        
     </div>
+    
     
  );
  

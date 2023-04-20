@@ -2,14 +2,13 @@ import React from "react";
 import './NewsPage.css';
 import {Link} from "react-router-dom";
 
-const NewsPage = ({post}) => {
-   
+const NewsPage = ({posts, fullText}) => {
     return (
-        <div className="tidings">
-            <div className="tidings__title">{post.title}</div>
-            <div className="tidings__text">{post.text}</div>
-            <div className="tidings__info">
-                <div className="info__date">{post.date}</div>
+        <div className="news-1">
+            <div className="news__title">{posts.title}</div>
+            <div className="news__text">{fullText}</div>
+            <div className="news__info">
+                <div className="info__date">{posts.date}</div>
                 <div className="info__button">
                     <Link to = '/'>Назад</Link>
                 </div>
