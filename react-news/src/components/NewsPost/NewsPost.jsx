@@ -1,24 +1,19 @@
-import React from "react";
-import './NewsPost.css';
-import {Link} from "react-router-dom";
+import styles from './NewsPost.module.scss';
+import { Link } from "react-router-dom";
 
-const NewsPost = ({post}) => {
-    
- return (
-    <div className="news">
-        <div className="news__title">{post.title}</div>
-        <div className="news__text">{post.text}</div>
-        <div className="news__info">
-            <div className="info__date">{post.date}</div>
-            <div className="info__button">
-                <Link to = {`${post.path}`}>Читать</Link>
+const NewsPost = ({ title, text, date, path }) => {
+
+    return (
+        <div className={styles.news}>
+            <div className={styles.news__title}>{title}</div>
+            <div className={styles.news__text}>{text.substring(0, 100) + '...'}</div>
+            <div className={styles.news__info}>
+                <div className={styles.info__date}>{date}</div>
+                <div className={styles.info__button}>
+                    <Link to={`${path}`}>Читать</Link>
+                </div>
             </div>
         </div>
-        
-    </div>
-    
-    
- );
- 
+    );
 }
 export default NewsPost;

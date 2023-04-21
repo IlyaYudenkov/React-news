@@ -1,16 +1,16 @@
-import React from "react";
-import './NewsPage.css';
-import {Link} from "react-router-dom";
+import style from './NewsPage.module.scss';
+import styles from '../NewsPost/NewsPost.module.scss';
+import { Link } from "react-router-dom";
 
-const NewsPage = ({posts, fullText}) => {
+const NewsPage = ({ posts }) => {
     return (
-        <div className="news-1">
-            <div className="news__title">{posts.title}</div>
-            <div className="news__text">{fullText}</div>
-            <div className="news__info">
-                <div className="info__date">{posts.date}</div>
-                <div className="info__button">
-                    <Link to = '/'>Назад</Link>
+        <div className={style.news}>
+            <div className={styles.news__title}>{posts.title}</div>
+            <div className={styles.news__text}>{posts.text}</div>
+            <div className={styles.news__info}>
+                <div className={styles.info__date}>{posts.date}</div>
+                <div className={styles.info__button}>
+                    <Link to='/'>Назад</Link>
                 </div>
             </div>
         </div>
