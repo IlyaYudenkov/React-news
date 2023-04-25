@@ -7,29 +7,14 @@
     display: grid;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     grid-template-areas: 'title title'
-        'content info'
-        'comments comments';
+        'content info' 'comments comments';
     grid-template-columns: 1fr 0.3fr;
     grid-template-rows: 80px 1fr;
     background-color: lightyellow;
-
-    &__comments {
-        display: none;
-        grid-area: comments;
-        padding: 15px 10px;
-        overflow: hidden;
-        text-align: justify;
-        text-indent: 10px;
-        border-top: 1px solid #000;
-        &:first-letter {
-            text-transform: uppercase;
-        }
-    }
 }
 
 .info {
     &__comments {
-        
         width: 95px;
         height: 40px;
         background-color: transparent;
@@ -48,8 +33,4 @@
         }
     }
 }
-.comments{
-    &__comment{
-        margin: 10px 0;
-    }
-}
+

@@ -1,0 +1,16 @@
+.news{
+    
+    &__comments {
+        display: none;
+        grid-area: comments;
+        padding: 15px 10px;
+        overflow: hidden;
+        text-align: justify;
+        text-indent: 10px;
+        border-top: 1px solid #000;
+        &:first-letter {
+            text-transform: uppercase;
+        }
+    }
+
+}
