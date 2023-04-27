@@ -1,49 +1,44 @@
 import stls from './NewsPage.module.scss';
 import styles from '../NewsPost/NewsPost.module.scss';
 import { Link, useParams } from "react-router-dom";
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import NewsComments from './NewsComments/NewsComments';
+import useSWR from 'swr';
+
 
 
 const NewsPage = () => {
 
     const { postId } = useParams();
 
-    const [post, setPost] = useState({});
+    const srcPage = `https://jsonplaceholder.typicode.com/posts/${postId}`;
+
+    const fetcher = srcPage => axios.get(srcPage).then(res => res.data)
 
     const [showComments, setShowComments] = useState(false)
 
-    const src = `https://jsonplaceholder.typicode.com/posts/${postId}`;
+    const { data, error, isLoading } = useSWR(srcPage, fetcher)
 
 
-    useEffect(() => {
-        axios
-            .get(src)
-            .then(res => setPost(res.data))
-    }, [src])
-
-
-    if (!post.id) {
-        return (
-            <div>
-                <h1>Новость</h1>
-                <div>Loading...</div>
-            </div>
-        )
-    }
-
+    if (error) return <h1 style={{textAlign:'center'}}>Ошибка загрузки</h1>
+    if (isLoading) return (
+        <div>
+            <h1>Новость</h1>
+            <div>Loading...</div>
+        </div>
+    )
     return (
         <div>
             <h1>Новость</h1>
             <div className={stls.news}>
-                <div className={styles.news__title}>{post.title}</div>
-                <div className={styles.news__text}>{post.body}</div>
+                <div className={styles.news__title}>{data.title}</div>
+                <div className={styles.news__text}>{data.body}</div>
 
                 {showComments && <NewsComments postId={postId} />}
 
                 <div className={styles.news__info}>
-                    <div className={styles.info__date}>{post.id}</div>
+                    <div className={styles.info__date}>{data.id}</div>
                     <div className={styles.info__button} >
                         <Link to='/'>Назад</Link>
                     </div>

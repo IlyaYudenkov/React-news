@@ -1,32 +1,30 @@
 import style from './NewsList.module.scss';
 import NewsPost from "../NewsPost/NewsPost";
-import { useEffect, useState } from 'react';
+import useSWR from 'swr';
 import axios from 'axios';
 
 
 const NewsList = () => {
-    const [posts, setPosts] = useState([]);
 
     const src = 'https://jsonplaceholder.typicode.com/posts';
 
-    useEffect(() => {
-        axios
-            .get(src)
-            .then(res => setPosts(res.data))
-    }, [])
+    const fetcher = src => axios.get(src).then(res => res.data)
 
-    if (!posts.length) {
-        return (
-            <div>
-                <h1>Новости</h1>
-                <div>Loading...</div>
-            </div>
-        )
-    }
+    const { data, error, isLoading } = useSWR(src, fetcher)
+
+
+    if (error) return <h1 style={{textAlign:'center'}}>Ошибка загрузки</h1>
+    if (isLoading) return (
+        <div>
+            <h1>Новости</h1>
+            <div>Loading...</div>
+        </div>
+    )
+
     return (
         <div>
             <h1 className={style.h1}>Новости</h1>
-            {posts.map(post => {
+            {data.map(post => {
                 return (
                     <NewsPost
                         title={post.title}
