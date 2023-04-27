@@ -40,7 +40,7 @@ const NewsPage = () => {
                 <div className={styles.news__title}>{post.title}</div>
                 <div className={styles.news__text}>{post.body}</div>
 
-                <NewsComments showComments={showComments} postId={postId} />
+                {showComments && <NewsComments postId={postId} />}
 
                 <div className={styles.news__info}>
                     <div className={styles.info__date}>{post.id}</div>

@@ -3,7 +3,7 @@ import axios from 'axios';
 import styles from './NewsComments.module.scss'
 import Comment from './Comment/Comment';
 
-const NewsComments = ({showComments, postId}) => {
+const NewsComments = ({ postId }) => {
 
     const [comments, setComments] = useState([]);
 
@@ -17,18 +17,19 @@ const NewsComments = ({showComments, postId}) => {
 
 
 
- return (
-    <div className={styles.news__comments} 
-                style={showComments ? {display:'block'} : null}>
-                {comments.map(comment => {
-                    return showComments && <Comment
-                        userName={comment.name}
-                        email={comment.email}
-                        text={comment.body}
-                        key={comment.id}
-                    />
-                })}
-                </div>
- );
+    return (
+
+        <div className={styles.news__comments}
+            style={{ display: 'block' }}>
+            {comments.length ? comments.map(comment =>
+                <Comment
+                    userName={comment.name}
+                    email={comment.email}
+                    text={comment.body}
+                    key={comment.id}
+                />)
+                : 'Loading...'}
+        </div>
+    );
 }
 export default NewsComments;

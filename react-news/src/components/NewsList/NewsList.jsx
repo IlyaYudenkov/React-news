@@ -25,7 +25,7 @@ const NewsList = () => {
     }
     return (
         <div>
-            <h1>Новости</h1>
+            <h1 className={style.h1}>Новости</h1>
             {posts.map(post => {
                 return (
                     <NewsPost
