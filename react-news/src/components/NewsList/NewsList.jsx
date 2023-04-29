@@ -1,30 +1,28 @@
 import style from './NewsList.module.scss';
 import NewsPost from "../NewsPost/NewsPost";
 import useSWR from 'swr';
-import axios from 'axios';
+import { fetcher } from '../../helpers/fetcher'
+import Loader from '../../helpers/Loader';
 
 
 const NewsList = () => {
 
-    const src = 'https://jsonplaceholder.typicode.com/posts';
+    const url = 'https://jsonplaceholder.typicode.com/posts';
 
-    const fetcher = src => axios.get(src).then(res => res.data)
+    const { data: posts, error, isLoading } = useSWR(url, fetcher)
 
-    const { data, error, isLoading } = useSWR(src, fetcher)
+    if (error) return <h1 style={{ textAlign: 'center' }}>Ошибка загрузки</h1>
 
-
-    if (error) return <h1 style={{textAlign:'center'}}>Ошибка загрузки</h1>
     if (isLoading) return (
         <div>
-            <h1>Новости</h1>
-            <div>Loading...</div>
+            <Loader text={'Новости'}/>
         </div>
     )
 
     return (
         <div>
             <h1 className={style.h1}>Новости</h1>
-            {data.map(post => {
+            {posts.map(post => {
                 return (
                     <NewsPost
                         title={post.title}
