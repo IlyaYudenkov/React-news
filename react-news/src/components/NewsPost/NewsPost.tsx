@@ -1,8 +1,10 @@
 import styles from './NewsPost.module.scss';
 import { Link } from "react-router-dom";
+import React, { FC } from "react";
+import { IPost } from '../../types/types';
 
 
-const NewsPost = ({ title, text, id }) => {
+const NewsPost:FC <IPost> = ({ title, text, id }) => {
 
     return (
         <div className={styles.news}>

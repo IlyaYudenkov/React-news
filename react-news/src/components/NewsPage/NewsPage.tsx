@@ -2,43 +2,41 @@ import stls from './NewsPage.module.scss';
 import styles from '../NewsPost/NewsPost.module.scss';
 import { Link, useParams } from "react-router-dom";
 import { useState } from 'react';
-import axios from 'axios';
-import NewsComments from './NewsComments/NewsComments';
+import { fetcher } from '../../helpers/fetcher'
+import NewsComments from '../NewsComments/NewsComments'
 import useSWR from 'swr';
-
-
+import Loader from '../../helpers/Loader';
+import React from 'react';
+import { IPost } from '../../types/types';
 
 const NewsPage = () => {
 
     const { postId } = useParams();
 
-    const srcPage = `https://jsonplaceholder.typicode.com/posts/${postId}`;
-
-    const fetcher = srcPage => axios.get(srcPage).then(res => res.data)
+    const url = `https://jsonplaceholder.typicode.com/posts/${postId}`;
 
     const [showComments, setShowComments] = useState(false)
 
-    const { data, error, isLoading } = useSWR(srcPage, fetcher)
+    const { data: post, error, isLoading } = useSWR<IPost>(url, fetcher)
 
 
-    if (error) return <h1 style={{textAlign:'center'}}>Ошибка загрузки</h1>
+    if (error) return <h1 style={{ textAlign: 'center' }}>Ошибка загрузки</h1>
     if (isLoading) return (
         <div>
-            <h1>Новость</h1>
-            <div>Loading...</div>
+            <Loader text='Новость'/>
         </div>
     )
     return (
         <div>
             <h1>Новость</h1>
             <div className={stls.news}>
-                <div className={styles.news__title}>{data.title}</div>
-                <div className={styles.news__text}>{data.body}</div>
+                <div className={styles.news__title}>{post.title}</div>
+                <div className={styles.news__text}>{post.text}</div>
 
-                {showComments && <NewsComments postId={postId} />}
+                {showComments && <NewsComments postId={`${postId}`} />}
 
                 <div className={styles.news__info}>
-                    <div className={styles.info__date}>{data.id}</div>
+                    <div className={styles.info__date}>{post.id}</div>
                     <div className={styles.info__button} >
                         <Link to='/'>Назад</Link>
                     </div>
