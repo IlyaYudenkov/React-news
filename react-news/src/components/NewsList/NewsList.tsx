@@ -1,43 +1,45 @@
-import style from './';
+import style from './NewsList.module.scss';
 import NewsPost from "../NewsPost/NewsPost";
 import useSWR from 'swr';
 import { fetcher } from '../../helpers/fetcher'
 import Loader from '../../helpers/Loader';
 import React, { FC } from "react";
-import { IPost } from '../../types/types';
 
-interface INewsList{
+
+interface IPosts {
+    userId: number;
     id: number;
-    body: string;
     title: string;
-    posts: IPost[];
+    body: string;
 }
 
-const NewsList:FC = () => {
+const NewsList: FC = () => {
 
     const url = 'https://jsonplaceholder.typicode.com/posts';
 
-    const { data: posts, error, isLoading } = useSWR<INewsList[]>(url, fetcher)
+    const { data: posts, error, isLoading } = useSWR<IPosts[]>(url, fetcher)
 
     if (error) return <h1 style={{ textAlign: 'center' }}>Ошибка загрузки</h1>
 
     if (isLoading) return (
         <div>
-            <Loader text='Новости'/>
+            <Loader text='Новости' />
         </div>
     )
 
     return (
         <div>
             <h1 className={style.h1}>Новости</h1>
-            {posts?.map(post => {
+            {posts!.map(post => {
                 return (
                     <NewsPost
                         title={post.title}
-                        text={post.body}
+                        body={post.body}
                         path={post.id}
                         id={post.id}
-                        key={post.id} />
+                        key={post.id}
+                    />
+
                 )
             })}
         </div>

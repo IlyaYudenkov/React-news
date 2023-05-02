@@ -1,7 +1,7 @@
 import stls from './NewsPage.module.scss';
 import styles from '../NewsPost/NewsPost.module.scss';
 import { Link, useParams } from "react-router-dom";
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { fetcher } from '../../helpers/fetcher'
 import NewsComments from '../NewsComments/NewsComments'
 import useSWR from 'swr';
@@ -9,7 +9,8 @@ import Loader from '../../helpers/Loader';
 import React from 'react';
 import { IPost } from '../../types/types';
 
-const NewsPage = () => {
+
+const NewsPage:FC = () => {
 
     const { postId } = useParams();
 
@@ -26,17 +27,17 @@ const NewsPage = () => {
             <Loader text='Новость'/>
         </div>
     )
-    return (
+    return (   
         <div>
-            <h1>Новость</h1>
+            <h1 className={stls.h1}>Новость</h1>
             <div className={stls.news}>
-                <div className={styles.news__title}>{post.title}</div>
-                <div className={styles.news__text}>{post.text}</div>
+                <div className={styles.news__title}>{post!.title}</div>
+                <div className={styles.news__text}>{post!.body}</div>
 
                 {showComments && <NewsComments postId={`${postId}`} />}
 
                 <div className={styles.news__info}>
-                    <div className={styles.info__date}>{post.id}</div>
+                    <div className={styles.info__date}>{post!.id}</div>
                     <div className={styles.info__button} >
                         <Link to='/'>Назад</Link>
                     </div>
