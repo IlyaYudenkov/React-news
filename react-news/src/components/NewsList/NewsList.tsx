@@ -1,9 +1,9 @@
 import style from './NewsList.module.scss';
-import NewsPost from "../NewsPost/NewsPost";
+import NewsPost from '../NewsPost/NewsPost';
 import useSWR from 'swr';
-import { fetcher } from '../../helpers/fetcher'
+import { fetcher } from '../../helpers/fetcher';
 import Loader from '../../helpers/Loader';
-import React, { FC } from "react";
+import React, { FC } from 'react';
 
 
 interface IPosts {
@@ -17,15 +17,15 @@ const NewsList: FC = () => {
 
     const url = 'https://jsonplaceholder.typicode.com/posts';
 
-    const { data: posts, error, isLoading } = useSWR<IPosts[]>(url, fetcher)
+    const { data: posts, error, isLoading } = useSWR<IPosts[]>(url, fetcher);
 
-    if (error) return <h1 style={{ textAlign: 'center' }}>Ошибка загрузки</h1>
+    if (error) return <h1 style={{ textAlign: 'center' }}>Ошибка загрузки</h1>;
 
     if (isLoading) return (
         <div>
             <Loader text='Новости' />
         </div>
-    )
+    );
 
     return (
         <div>
@@ -40,9 +40,9 @@ const NewsList: FC = () => {
                         key={post.id}
                     />
 
-                )
+                );
             })}
         </div>
     );
-}
+};
 export default NewsList;

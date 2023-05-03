@@ -1,5 +1,5 @@
-import styles from './Comment.module.scss'
-import React, { FC } from "react";
+import styles from './Comment.module.scss';
+import React, { FC } from 'react';
 
 interface IComment {
     text: string;
@@ -22,5 +22,5 @@ const Comment: FC<IComment> = ({ userName, email, text }) => {
             </div>
         </div>
     );
-}
+};
 export default Comment;

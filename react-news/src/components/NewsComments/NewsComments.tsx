@@ -1,9 +1,9 @@
 import styles from './NewsComments.module.scss';
 import Comment from '../Comment/Comment';
-import useSWR from 'swr'
+import useSWR from 'swr';
 import { fetcher } from '../../helpers/fetcher';
 import Loader from '../../helpers/Loader';
-import React, { FC } from "react";
+import React, { FC } from 'react';
 
 interface NewsCommentsProps {
     postId: string;
@@ -22,9 +22,9 @@ const NewsComments: FC<NewsCommentsProps> = ({ postId }) => {
 
     const url = `https://jsonplaceholder.typicode.com/posts/${postId}/comments`;
 
-    const { data: comments, error } = useSWR<IComments[]>(url, fetcher)
+    const { data: comments, error } = useSWR<IComments[]>(url, fetcher);
 
-    if (error) return <div>Ошибка загрузки</div>
+    if (error) return <div>Ошибка загрузки</div>;
 
     return (
 
@@ -35,5 +35,5 @@ const NewsComments: FC<NewsCommentsProps> = ({ postId }) => {
             ) : <Loader display='none' />}
         </div>
     );
-}
+};
 export default NewsComments;

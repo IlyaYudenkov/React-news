@@ -1,0 +1,21 @@
+{
+    "extends": [
+        "stylelint-config-standard-scss",
+        "stylelint-config-rational-order"
+    ],
+    "plugins": [
+        "stylelint-order"
+    ],
+    "rules": {
+        "block-no-empty": null,
+        "alpha-value-notation": [
+            "percentage",
+            {
+                "exceptProperties": [
+                    "opacity"
+                ]
+            }
+        ],
+        "string-quotes": "single"
+    }
+}

@@ -1,33 +1,33 @@
 import stls from './NewsPage.module.scss';
 import styles from '../NewsPost/NewsPost.module.scss';
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams } from 'react-router-dom';
 import { FC, useState } from 'react';
-import { fetcher } from '../../helpers/fetcher'
-import NewsComments from '../NewsComments/NewsComments'
+import { fetcher } from '../../helpers/fetcher';
+import NewsComments from '../NewsComments/NewsComments';
 import useSWR from 'swr';
 import Loader from '../../helpers/Loader';
 import React from 'react';
 import { IPost } from '../../types/types';
 
 
-const NewsPage:FC = () => {
+const NewsPage: FC = () => {
 
     const { postId } = useParams();
 
     const url = `https://jsonplaceholder.typicode.com/posts/${postId}`;
 
-    const [showComments, setShowComments] = useState(false)
+    const [showComments, setShowComments] = useState(false);
 
-    const { data: post, error, isLoading } = useSWR<IPost>(url, fetcher)
+    const { data: post, error, isLoading } = useSWR<IPost>(url, fetcher);
 
 
-    if (error) return <h1 style={{ textAlign: 'center' }}>Ошибка загрузки</h1>
+    if (error) return <h1 style={{ textAlign: 'center' }}>Ошибка загрузки</h1>;
     if (isLoading) return (
         <div>
-            <Loader text='Новость'/>
+            <Loader text='Новость' />
         </div>
-    )
-    return (   
+    );
+    return (
         <div>
             <h1 className={stls.h1}>Новость</h1>
             <div className={stls.news}>
@@ -51,5 +51,5 @@ const NewsPage:FC = () => {
         </div>
 
     );
-}
+};
 export default NewsPage;
