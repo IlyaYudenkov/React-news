@@ -1,11 +1,13 @@
 .loaderTitle{
-    margin: 20px 0 10px;
+    /* stylelint-disable-next-line shorthand-property-no-redundant-values */
+    margin-top: 20px;
     font-weight: 700;
     font-size: 30px;
 }
 
 .loaderText{
+    margin: 10px 0;
     font-size: 17px;
-text-align: center;
+    text-align: center;
 }
 

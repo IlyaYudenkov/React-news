@@ -23,32 +23,32 @@ const NewsPage: FC = () => {
 
     if (error) return <h1 style={{ textAlign: 'center' }}>Ошибка загрузки</h1>;
     if (isLoading) return (
-        <div>
-            <Loader text='Новость' />
-        </div>
+      <div>
+        <Loader text='Новость' />
+      </div>
     );
     return (
-        <div>
-            <h1 className={stls.h1}>Новость</h1>
-            <div className={stls.news}>
-                <div className={styles.news__title}>{post!.title}</div>
-                <div className={styles.news__text}>{post!.body}</div>
+      <div>
+        <h1 className={stls.h1}>Новость</h1>
+        <div className={stls.news}>
+          <div className={styles.news__title}>{post && post.title}</div>
+          <div className={styles.news__text}>{post && post.body}</div>
 
-                {showComments && <NewsComments postId={`${postId}`} />}
+          {showComments && <NewsComments postId={`${postId}`} />}
 
-                <div className={styles.news__info}>
-                    <div className={styles.info__date}>{post!.id}</div>
-                    <div className={styles.info__button} >
-                        <Link to='/'>Назад</Link>
-                    </div>
-
-                    <button onClick={() => setShowComments(!showComments)} className={stls.info__comments} >
-                        {showComments ? 'Скрыть комментарии' : 'Показать комментарии'}
-                    </button>
-
-                </div>
+          <div className={styles.news__info}>
+            <div className={styles.info__date}>{post && post.id}</div>
+            <div className={styles.info__button} >
+              <Link to='/'>Назад</Link>
             </div>
+
+            <button onClick={() => setShowComments(!showComments)} className={stls.info__comments} >
+              {showComments ? 'Скрыть комментарии' : 'Показать комментарии'}
+            </button>
+
+          </div>
         </div>
+      </div>
 
     );
 };

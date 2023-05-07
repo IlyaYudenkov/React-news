@@ -9,12 +9,12 @@ export interface ILoaderProps {
 const Loader: FC<ILoaderProps> = ({ text, display }) => {
 
     return (
-        <div>
-            <h1 className={style.loaderTitle} style={{ display: `${display}` }}>{text}</h1>
-            <div className={style.loaderText}>
-                Loading...
-            </div>
+      <div>
+        <h1 className={style.loaderTitle} style={{ display: `${display}` }}>{text}</h1>
+        <div className={style.loaderText}>
+          Loading...
         </div>
+      </div>
 
     );
 };

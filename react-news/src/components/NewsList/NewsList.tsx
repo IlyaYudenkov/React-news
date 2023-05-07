@@ -22,17 +22,17 @@ const NewsList: FC = () => {
     if (error) return <h1 style={{ textAlign: 'center' }}>Ошибка загрузки</h1>;
 
     if (isLoading) return (
-        <div>
-            <Loader text='Новости' />
-        </div>
+      <div>
+        <Loader text='Новости' />
+      </div>
     );
 
     return (
-        <div>
-            <h1 className={style.h1}>Новости</h1>
-            {posts!.map(post => {
+      <div>
+        <h1 className={style.h1}>Новости</h1>
+        {posts ? posts.map(post => {
                 return (
-                    <NewsPost
+                  <NewsPost
                         title={post.title}
                         body={post.body}
                         path={post.id}
@@ -41,8 +41,8 @@ const NewsList: FC = () => {
                     />
 
                 );
-            })}
-        </div>
+            }) : 'No available data'}
+      </div>
     );
 };
 export default NewsList;
